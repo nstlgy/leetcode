@@ -1,19 +1,24 @@
-// An array with numbers only
-const arr = [1, 2, 3];
+var startTime = performance.now();
 
-// A filtering function
-function fn(n) {
-  return i === 0;
-}
-
-//returns a filtered array
 function filter(arr, fn) {
-  const filtered = [];
-  arr.map((item) => {
-    if (fn(item)) {
-      return item;
+  const newArr = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    let result = Boolean(fn(arr[i], i));
+    if (result) {
+      newArr.push(arr[i]);
     }
-  });
+  }
+  return newArr;
 }
+
+var endTime = performance.now();
+
+const arr = [-2, -1, 0, 1, 2];
+const fn = function plusOne(n) {
+  return n + 1;
+};
 
 filter(arr, fn);
+
+console.log(`${endTime - startTime} milliseconds`);
